@@ -16,7 +16,7 @@
     "cli",
     "tool"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "engines": {
     "node": ">=4.3"
@@ -29,6 +29,7 @@
     "url": "https://github.com/davidkelley/json-dereference-cli"
   },
   "dependencies": {
+    "aws-sdk": "^2.80.0",
     "json-schema-ref-parser": "^3.1.2",
     "minimist": "^1.2.0",
     "node-yaml": "^3.1.0"

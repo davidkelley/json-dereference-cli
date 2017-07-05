@@ -5,6 +5,7 @@ var path = require('path');
 var util = require('util');
 var $RefParser = require('json-schema-ref-parser');
 var argv = require('minimist')(process.argv.slice(2));
+var s3Resolver = require('./s3-resolver');
 
 if (!argv.s || !argv.o) {
   console.log('USAGE: ' + process.argv[1] + ' -s <schema> -o <output> [...]');
@@ -17,16 +18,12 @@ var schema = fs.readFileSync(input, { encoding: 'utf8' });
 
 console.log("Dereferencing schema: " + input);
 
-$RefParser.dereference(input, function(err, schema) {
+$RefParser.dereference(input, { resolve: { s3: s3Resolver } }, function(err, schema) {
   if (err) {
     console.error(err);
   } else {
-    console.log("Parsed schema");
-
     var output = path.resolve(argv.o);
     var ext = path.parse(output).ext;
-
-    console.log(ext);
 
     if (ext == '.json') {
       var data = JSON.stringify(schema);
