@@ -12,6 +12,8 @@ if (!argv.s || !argv.o) {
   process.exit(1);
 }
 
+if (argv.b) s3Resolver.bucket = argv.b;
+
 var input = path.resolve(argv.s);
 
 var schema = fs.readFileSync(input, { encoding: 'utf8' });
