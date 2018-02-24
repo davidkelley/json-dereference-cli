@@ -32,7 +32,8 @@ $RefParser.dereference(input, { resolve: { s3: s3Resolver } }, function(err, sch
       fs.writeFileSync(output, data, { encoding: 'utf8', flag: 'w' });
     } else if (ext.match(/^\.?(yaml|yml)$/)) {
       var yaml = require('node-yaml');
-      yaml.writeSync(output, schema, { encoding: 'utf8' })
+      var data = yaml.dump(schema, { encoding: 'utf8', noRefs: true });
+      fs.writeFileSync(output, data, { encoding: 'utf8', flag: 'w' });
     } else {
       console.error("Unrecognised output file type: " + output);
       process.exit(1);
