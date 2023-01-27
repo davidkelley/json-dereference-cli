@@ -4,15 +4,19 @@
 
 ## Usage
 
-```
+```bash
+# Using npx:
+npx json-dereference-cli -s <schema> [-b <s3bucket>] [-i <spaces>] [-o <output>] [-t <type>]
+
+# Installing globally:
 npm install -g json-dereference-cli
-json-dereference -s my-schema.json -o compiled-schema.yaml
+json-dereference -s <schema> [-b <s3bucket>] [-i <spaces>] [-o <output>] [-t <type>]
 ```
 
-_Note: The input file can either be `json`, or `yaml` / `yml`._
+*Note:* The input file can either be `json`, or `yaml` / `yml`.
 
-_Note: The output file types are either `json` or `yaml` / `yml`. This is determined from the file extension for the output file path passed in._
+*Note:* The output file types are either `json` or `yaml` / `yml`. This is determined from the file extension for the output file path passed in or using `-t json|yaml` when writing to stdout.
 
-### $ref: "s3://.."
+## Resolving s3 references
 
-This CLI tool will also attempt to resolve S3 references using the `aws-sdk`. Take a look [here](/s3-resolver.js) to see the custom resolver code.
+This CLI tool will also attempt to resolve S3 references (`$ref: "s3://.."`) using the `aws-sdk`. Take a look [here](s3-resolver.js) to see the custom resolver code.
