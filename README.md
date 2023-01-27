@@ -5,12 +5,16 @@
 ## Usage
 
 ```bash
+# Install globally:
+npm install -g json-dereference-cli
+json-dereference -s <schema> [-b <s3bucket>] [-i <spaces>] [-o <output>] [-t <type>]
+
 # Using npx:
 npx json-dereference-cli -s <schema> [-b <s3bucket>] [-i <spaces>] [-o <output>] [-t <type>]
 
-# Installing globally:
-npm install -g json-dereference-cli
-json-dereference -s <schema> [-b <s3bucket>] [-i <spaces>] [-o <output>] [-t <type>]
+# Using Docker:
+docker build . -t json-dereference-cli
+docker run --rm -v $PWD:/work json-dereference-cli:latest -s <schema> [-b <s3bucket>] [-i <spaces>] [-o <output>] [-t <type>]
 ```
 
 *Note:* The input file can either be `json`, or `yaml` / `yml`.
